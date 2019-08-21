@@ -1,0 +1,36 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2019-08-21T02:59:57.974Z",
+        "line": 3,
+        "name": "Get the intraday status",
+        "description": "",
+        "id": "market-data;get-the-intraday-status",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1822585,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "The user have a access token",
+            "match": {
+              "location": "UserDataSteps.theUserHaveAccessToken()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      }
+    ],
+    "name": "Market data",
+    "description": "",
+    "id": "market-data",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/testng/markets.feature",
+    "tags": []
+  }
+]

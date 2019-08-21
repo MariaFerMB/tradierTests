@@ -8,13 +8,20 @@ import java.io.IOException;
 
 public class RequestBuilder {
 
-    private RequestSpecBuilder requestSpecification;
+    private RequestSpecBuilder requestSpecBuilder;
+
+    public RequestSpecification getRequestSpecification() {
+        return requestSpecification;
+    }
+
+    private RequestSpecification requestSpecification;
 
     public RequestBuilder(String basPath) {
-        requestSpecification = new RequestSpecBuilder()
-                .setBaseUri("https://sandbox.tradier.com/v1/")
+        requestSpecBuilder = new RequestSpecBuilder()
+                .setBaseUri("https://sandbox.tradier.com/v1")
                 .setAccept(ContentType.JSON)
                 .setBasePath(basPath);
+        requestSpecification =requestSpecBuilder.build();
     }
 
     public  RequestBuilder request(String baseUri,String basePath) throws IOException {

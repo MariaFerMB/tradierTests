@@ -7,6 +7,7 @@ import entities.Quote;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import utils.RequestBuilder;
+import utils.ResponseHelper;
 import utils.Share;
 
 import java.io.IOException;
@@ -21,18 +22,10 @@ public class APISteps {
     public  void theUserRequestForASymbols(String id)throws IOException {
         RequestBuilder requestBuilder = new RequestBuilder("markets/quotes");
         RequestSpecification requestSpecification =requestBuilder.getRequestSpecification();
-        Response response = given().header("Authorization", "Bearer "+ Share.getToken())
-                .queryParam("symbols", id)
-                .spec(requestSpecification)
-                .get()
-                .then()
-                .assertThat()
-                .statusCode(SC_OK)
-                .extract()
-                .response();
+        Response response = ResponseHelper.getResponse(requestSpecification,"symbols", id);
 
 
-        List<Quote> x = response.path("quotes.quote");
+        List<String> x = response.path("quotes.quote");
         TypeReference<List<Quote>> typeReference = new TypeReference<List<Quote>>() {};
         ObjectMapper mapper = new ObjectMapper();
         String jsonArray = mapper.writeValueAsString(x);

@@ -11,7 +11,7 @@
         "steps": [
           {
             "result": {
-              "duration": 116063000,
+              "duration": 86667100,
               "status": "passed"
             },
             "line": 4,
@@ -24,7 +24,7 @@
         ]
       },
       {
-        "start_timestamp": "2019-08-21T15:43:35.990Z",
+        "start_timestamp": "2019-08-21T16:47:19.166Z",
         "line": 7,
         "name": "Get quotes",
         "description": "",
@@ -34,7 +34,7 @@
         "steps": [
           {
             "result": {
-              "duration": 1580200,
+              "duration": 1042400,
               "status": "passed"
             },
             "line": 8,
@@ -46,13 +46,13 @@
                   "offset": 18
                 }
               ],
-              "location": "UserDataSteps.iHaveAQuoteOfASymbols(String)"
+              "location": "QuoteSteps.iHaveAQuoteOfASymbols(String)"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 6975912000,
+              "duration": 4700904700,
               "status": "passed"
             },
             "line": 9,
@@ -70,7 +70,7 @@
           },
           {
             "result": {
-              "duration": 1795100,
+              "duration": 1073000,
               "status": "passed"
             },
             "line": 10,

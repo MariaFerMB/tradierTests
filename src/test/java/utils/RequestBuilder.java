@@ -23,16 +23,4 @@ public class RequestBuilder {
                 .setBasePath(basPath);
         requestSpecification =requestSpecBuilder.build();
     }
-
-    public  RequestBuilder request(String baseUri,String basePath) throws IOException {
-
-        RequestSpecification requestSpecification = new RequestSpecBuilder()
-                .setBaseUri(baseUri)
-                .setAccept(ContentType.JSON)
-                .setBasePath(basePath)
-                .build();
-
-        return this;
-    }
-
 }

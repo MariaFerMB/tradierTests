@@ -68,5 +68,4 @@ public class Quote {
     private String rootSymbols;
 
 
-
 }

@@ -9,6 +9,4 @@ public class QuoteGenerator {
         quote.setSymbol(symbol);
         return quote;
     }
-
-
 }

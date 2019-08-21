@@ -13,12 +13,18 @@ public class Share {
     }
 
     public static String getToken() {
-        if(token==null){
-             token = new ReadAuthenticationToken().readToken();
-        }
         return token;
+    }
+    public static void setToken(){
+        if(token==null){
+            token = new ReadAuthenticationToken().readToken();
+        }
     }
     public static void setShare(String key, Object value){
         ((Map)shareMaps.get()).put(key, value);
+    }
+
+    public static <T>T getShare(String key){
+        return (T)((Map)shareMaps.get()).get(key);
     }
 }

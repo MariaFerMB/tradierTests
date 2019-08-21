@@ -3,7 +3,7 @@ package steps;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.api.java.en.When;
-import entities.Quotes;
+import entities.Quote;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import utils.RequestBuilder;
@@ -30,10 +30,14 @@ public class APISteps {
                 .statusCode(SC_OK)
                 .extract()
                 .response();
+
+
+        List<Quote> x = response.path("quotes.quote");
+        TypeReference<List<Quote>> typeReference = new TypeReference<List<Quote>>() {};
         ObjectMapper mapper = new ObjectMapper();
-       //TypeReference<List<Quotes>> typeReference = new TypeReference<List<Quotes>>() {};
-        //List<Quotes> quotes= mapper.readValue(response.getBody().asString(), typeReference);
-       // Share.setShare("employeeResponse", quotes.get(0));
+        String jsonArray = mapper.writeValueAsString(x);
+        List<Quote> qoutes = mapper.readValue(jsonArray, typeReference);
+        Share.setShare("qoutesResponse",qoutes);
 
     }
 }

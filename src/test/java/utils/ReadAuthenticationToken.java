@@ -7,13 +7,7 @@ import java.util.Properties;
 
 public class ReadAuthenticationToken {
 
-   // private String token;
-
-
     public ReadAuthenticationToken(){
-//        if (token.equals("")){
-//            readToken();
-//        }
     }
 
     public String readToken(){

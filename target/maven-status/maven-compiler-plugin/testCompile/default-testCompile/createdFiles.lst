@@ -1,5 +1,10 @@
 runner\Runner.class
 utils\RequestBuilder.class
 utils\ReadAuthenticationToken.class
+entities\Quote.class
+steps\AssertSteps.class
 steps\UserDataSteps.class
+steps\APISteps.class
+utils\QuoteGenerator.class
 utils\Share.class
+steps\APISteps$1.class

@@ -3,17 +3,15 @@
     "line": 1,
     "elements": [
       {
-        "start_timestamp": "2019-08-21T02:59:57.974Z",
         "line": 3,
-        "name": "Get the intraday status",
+        "name": "",
         "description": "",
-        "id": "market-data;get-the-intraday-status",
-        "type": "scenario",
-        "keyword": "Scenario",
+        "type": "background",
+        "keyword": "Background",
         "steps": [
           {
             "result": {
-              "duration": 1822585,
+              "duration": 116063000,
               "status": "passed"
             },
             "line": 4,
@@ -22,6 +20,65 @@
               "location": "UserDataSteps.theUserHaveAccessToken()"
             },
             "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2019-08-21T15:43:35.990Z",
+        "line": 7,
+        "name": "Get quotes",
+        "description": "",
+        "id": "market-data;get-quotes",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1580200,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "I have a quote of AAPL,DIS symbols",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AAPL,DIS",
+                  "offset": 18
+                }
+              ],
+              "location": "UserDataSteps.iHaveAQuoteOfASymbols(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 6975912000,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "the user request for AAPL,DIS symbols",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AAPL,DIS",
+                  "offset": 21
+                }
+              ],
+              "location": "APISteps.theUserRequestForASymbols(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1795100,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "the page show the symbols that he ask",
+            "match": {
+              "location": "AssertSteps.thePageShowTheSymbolsThatHeAsk()"
+            },
+            "keyword": "Then "
           }
         ]
       }

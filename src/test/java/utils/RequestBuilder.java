@@ -4,8 +4,6 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
-import java.io.IOException;
-
 public class RequestBuilder {
 
     private RequestSpecBuilder requestSpecBuilder;

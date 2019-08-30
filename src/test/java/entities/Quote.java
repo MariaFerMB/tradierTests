@@ -2,16 +2,7 @@ package entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class Quote {
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
     @JsonProperty("symbol")
     private String symbol;
     @JsonProperty("description")
@@ -53,19 +44,27 @@ public class Quote {
     @JsonProperty("week_52_low")
     private double week52Low;
     @JsonProperty("bidsize")
-    private long bidsize;
+    private int bidsize;
     @JsonProperty("bidexch")
     private String bidexch;
     @JsonProperty("bid_date")
     private long  bidDate;
     @JsonProperty("asksize")
-    private long asksize;
+    private int asksize;
     @JsonProperty("askexch")
     private String askexch;
     @JsonProperty("ask_date")
     private long askDate;
     @JsonProperty("root_symbols")
     private String rootSymbols;
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
 
 
 }

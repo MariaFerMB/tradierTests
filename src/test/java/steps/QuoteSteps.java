@@ -12,14 +12,14 @@ public class QuoteSteps {
 
 
     @Given("I have a quote of ([^\"]*) symbols$")
-    public  void iHaveAQuoteOfASymbols(String symbol){
-        String[] symbols = symbol.split(",");
-        List<Quote> qoutes = new ArrayList<>();
-        for (int i = 0;i<symbols.length;i++){
-            Quote qoute = QuoteGenerator.generateQoute(symbols[i]);
-            qoutes.add(qoute);
+    public  void iHaveAQuoteOfASymbols(String arg){
+        String[] symbols = arg.split(",");
+        List<Quote> quotes = new ArrayList<>();
+        for (String symbol: symbols){
+            Quote quote = QuoteGenerator.generateQuote(symbol);
+            quotes.add(quote);
         }
-        Share.setShare("qoutes",qoutes);
+        Share.setShare("quotes",quotes);
 
     }
 }

@@ -7,14 +7,13 @@ import java.util.Properties;
 
 public class ReadAuthenticationToken {
 
-    public ReadAuthenticationToken(){
-    }
+    private static final String TOKEN_FILE = "src/test/resources/token.properties";
 
-    public String readToken(){
-        String respond =null;
+    static String readToken(){
+        String respond ="";
 
         try {
-            InputStream fileInput = new FileInputStream("src/test/resources/token.properties");
+            InputStream fileInput = new FileInputStream(TOKEN_FILE);
             Properties prop = new Properties();
             prop.load(fileInput);
             respond = prop.getProperty("token");

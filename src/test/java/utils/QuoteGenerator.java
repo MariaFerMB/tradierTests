@@ -4,7 +4,7 @@ import entities.Quote;
 
 public class QuoteGenerator {
 
-    public static  Quote generateQoute(String symbol){
+    public static  Quote generateQuote(String symbol){
         Quote quote = new Quote();
         quote.setSymbol(symbol);
         return quote;

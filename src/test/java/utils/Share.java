@@ -8,16 +8,14 @@ public class Share {
     private static String token;
     private static ThreadLocal<Map<String,Object>> shareMaps = ThreadLocal.withInitial(HashMap::new);
 
-    public Share(){
-
-    }
+    public Share(){    }
 
     public static String getToken() {
         return token;
     }
     public static void setToken(){
         if(token==null){
-            token = new ReadAuthenticationToken().readToken();
+            token = ReadAuthenticationToken.readToken();
         }
     }
     public static void setShare(String key, Object value){

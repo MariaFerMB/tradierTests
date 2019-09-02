@@ -59,8 +59,4 @@ public class BaseEntity {
     @JsonProperty("ask_date")
     protected long askDate;
 
-
-
-
-
 }

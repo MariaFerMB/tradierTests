@@ -1,8 +1,8 @@
 package steps;
 
 import cucumber.api.java.en.Then;
-import entities.options.Option;
-import entities.options.OptionsResponse;
+import entities.chains.Chain;
+import entities.chains.ChainsResponse;
 import entities.quotes.Quote;
 import entities.quotes.QuoteResponse;
 import utils.Share;
@@ -22,15 +22,15 @@ public class AssertSteps {
         assertThat(quotes.get(i).getSymbol(), equalTo(quoteResponds.get(i).getSymbol()));
     }
 
-    @Then("the page show the different options chain for the")
+    @Then("the page show the different chains chain for the")
     public void thePageShowTheDifferentOptionsChainForThe() {
-        Option option = Share.getShare("option");
-        List<Option> optionsResponds = ((OptionsResponse)Share.getShare("optionResponds")).getOptions().getOption();
-        for (Option responds :optionsResponds){
+        Chain chain = Share.getShare("chain");
+        List<Chain> optionsResponds = ((ChainsResponse)Share.getShare("optionResponds")).getChains().getChain();
+        for (Chain responds :optionsResponds){
 
             // funcion que compare las 2 cosas
-            assertThat(responds.getRootSymbol(),equalTo(option.getRootSymbol()));
-            assertThat(responds.getExpirationDate(),equalTo(option.getExpirationDate()));
+            assertThat(responds.getRootSymbol(),equalTo(chain.getRootSymbol()));
+            assertThat(responds.getExpirationDate(),equalTo(chain.getExpirationDate()));
         }
 
     }

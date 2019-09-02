@@ -1,6 +1,6 @@
 package utils;
 
-import entities.options.Option;
+import entities.chains.Chain;
 import entities.quotes.Quote;
 
 public class QuoteGenerator {
@@ -11,11 +11,11 @@ public class QuoteGenerator {
         return quote;
     }
 
-    public static Option generateOption(String symbol, String expirationDate){
-        Option option = new Option();
-        option.setRootSymbol(symbol);
-        option.setExpirationDate(expirationDate);
-        return option;
+    public static Chain generateOption(String symbol, String expirationDate){
+        Chain chain = new Chain();
+        chain.setRootSymbol(symbol);
+        chain.setExpirationDate(expirationDate);
+        return chain;
     }
 
 

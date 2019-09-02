@@ -1,11 +1,11 @@
-package entities.options;
+package entities.chains;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import entities.BaseEntity;
 import lombok.Data;
 
 @Data
-public class Option extends BaseEntity {
+public class Chain extends BaseEntity {
 
     @JsonProperty("underlying")
     private String underlying;

@@ -23,10 +23,10 @@ public class QuoteSteps {
         Share.setShare("quotes",quotes);
     }
 
-    @And("I have a option chain of ([^\"]*) with expiration date: ([^\"]*)")
+    @And("I have a chain chain of ([^\"]*) with expiration date: ([^\"]*)")
     public void iHaveAOptionChainOfAAPL(String symbol, String expirationData) {
 
-        Share.setShare("option",QuoteGenerator.generateOption(symbol,expirationData));
+        Share.setShare("chain",QuoteGenerator.generateOption(symbol,expirationData));
 
 
 

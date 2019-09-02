@@ -1,31 +1,29 @@
 package steps;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.api.java.en.When;
-import entities.Result;
+import entities.QuoteResponse;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import utils.RequestBuilder;
 import utils.ResponseHelper;
-import utils.Share;
 
 import java.io.IOException;
 
 public class APISteps {
 
-    public static final String MARKETS = "markets";
-    public static final String WHACHLIST = "wachlist";
+    private static final String MARKETS = "markets";
+    private static final String WHACHLIST = "wachlist";
 
-    @When("the user request for ([^\"]*) symbols$")
+    @When("I request for ([^\"]*) symbols$")
     public  void theUserRequestForASymbols(String id)throws IOException {
         RequestBuilder requestBuilder = new RequestBuilder(MARKETS+"/quotes");
 
         RequestSpecification requestSpecification =requestBuilder.getRequestSpecification();
         Response response = ResponseHelper.getResponse(requestSpecification,"symbols", id);
-        ResponseHelper.maper(response,Result.class,"quotesResponds");
+        ResponseHelper.maper(response, QuoteResponse.class,"quotesResponds");
 
 //        ObjectMapper mapper2  = new ObjectMapper();
-//        Result quotes = mapper2.readValue(response.getBody().asString(), Result.class);
+//        QuoteResponse quotes = mapper2.readValue(response.getBody().asString(), QuoteResponse.class);
 //        Share.setShare("employeeResponse",quotes);
     }
 }

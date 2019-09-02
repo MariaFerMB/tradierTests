@@ -3,7 +3,12 @@
   <component name="issues">
     <option name="index">
       <map>
-        <entry key="$PROJECT_DIR$/src/test/java/entities/Quotes.java">
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/.gitignore">
           <value>
             <set />
           </value>
@@ -18,12 +23,7 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/src/test/java/steps/AssertSteps.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/src/test/java/utils/ReadAuthenticationToken.java">
+        <entry key="$PROJECT_DIR$/src/test/java/steps/UserDataSteps.java">
           <value>
             <set />
           </value>
@@ -39,11 +39,6 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/utils/Share.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/src/test/resources/testng/markets.feature">
           <value>
             <set />
           </value>

@@ -5,14 +5,10 @@ import java.util.Map;
 
 public class Share {
 
-    private static String token;
+    static String token;
     private static ThreadLocal<Map<String,Object>> shareMaps = ThreadLocal.withInitial(HashMap::new);
 
-    public Share(){    }
 
-    public static String getToken() {
-        return token;
-    }
     public static void setToken(){
         if(token==null){
             token = ReadAuthenticationToken.readToken();

@@ -2,7 +2,7 @@ package steps;
 
 import cucumber.api.java.en.Then;
 import entities.Quote;
-import entities.Result;
+import entities.QuoteResponse;
 import utils.Share;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class AssertSteps {
     @Then("the page show the symbols that he ask")
     public void thePageShowTheSymbolsThatHeAsk(){
         List<Quote> quotes= Share.getShare("quotes");
-        List<Quote> quoteResponds = ((Result)Share.getShare("quotesResponds")).getQuotes().getQuote();
+        List<Quote> quoteResponds = ((QuoteResponse)Share.getShare("quotesResponds")).getQuotes().getQuote();
 
         for (int i =0; i<quotes.size();i++)
         assertThat(quotes.get(i).getSymbol(), equalTo(quoteResponds.get(i).getSymbol()));

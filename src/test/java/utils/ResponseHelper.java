@@ -1,7 +1,6 @@
 package utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entities.Result;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -16,7 +15,7 @@ public class ResponseHelper {
 
     public static Response getResponse(RequestSpecification requestSpecification, String param,String paramValue){
         Response response;
-        response = given().header("Authorization", "Bearer "+ Share.getToken())
+        response = given().header("Authorization", "Bearer "+ Share.token)
                 .queryParam(param, paramValue)
                 .spec(requestSpecification)
                 .get()

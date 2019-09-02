@@ -3,7 +3,7 @@ package entities;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-public class Result {
+public class QuoteResponse {
 
     @JsonProperty("quotes")
     private Quotes quotes;

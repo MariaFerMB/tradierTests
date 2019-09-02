@@ -9,7 +9,6 @@ public class UserDataSteps {
 
     @Given("The user have a access token$")
     public  void theUserHaveAccessToken(){
-        ReadAuthenticationToken token = new ReadAuthenticationToken();
         Share.setToken();
     }
 

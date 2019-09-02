@@ -1,9 +1,9 @@
 package steps;
 
 import cucumber.api.java.en.When;
-import entities.QuoteResponse;
+import entities.options.OptionsResponse;
+import entities.quotes.QuoteResponse;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import utils.RequestBuilder;
 import utils.ResponseHelper;
 
@@ -15,15 +15,28 @@ public class APISteps {
     private static final String WHACHLIST = "wachlist";
 
     @When("I request for ([^\"]*) symbols$")
-    public  void theUserRequestForASymbols(String id)throws IOException {
+    public  void theUserRequestForASymbols(String symbols)throws IOException {
+
         RequestBuilder requestBuilder = new RequestBuilder(MARKETS+"/quotes");
+        requestBuilder.addParam("symbols",symbols);
 
-        RequestSpecification requestSpecification =requestBuilder.getRequestSpecification();
-        Response response = ResponseHelper.getResponse(requestSpecification,"symbols", id);
-        ResponseHelper.maper(response, QuoteResponse.class,"quotesResponds");
+        Response response = ResponseHelper.getResponse(requestBuilder.getRequestSpecification());
+        ResponseHelper.map(response, QuoteResponse.class,"quotesResponds");
 
-//        ObjectMapper mapper2  = new ObjectMapper();
-//        QuoteResponse quotes = mapper2.readValue(response.getBody().asString(), QuoteResponse.class);
-//        Share.setShare("employeeResponse",quotes);
+    }
+
+    @When("I request for ([^\"]*) and the ([^\"]*) expiration chain")
+    public void iRequestForASymbolAndTheExpirationDateChain(String symbol, String date) throws IOException {
+
+        RequestBuilder requestBuilder = new RequestBuilder(MARKETS+"/options/chains");
+        requestBuilder.addParam("symbol",symbol);
+        requestBuilder.addParam("expiration",date);
+
+        Response response = ResponseHelper.getResponse(requestBuilder.getRequestSpecification());
+        ResponseHelper.map(response, OptionsResponse.class,"optionResponds");
+
+
+
+
     }
 }

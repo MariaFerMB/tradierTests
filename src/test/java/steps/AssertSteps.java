@@ -5,12 +5,18 @@ import entities.chains.Chain;
 import entities.chains.ChainsResponse;
 import entities.expirationDate.ExpirationDates;
 import entities.expirationDate.ExpirationDateResponse;
+import entities.historicalPrice.HistoricalPrice;
+import entities.historicalPrice.HistoricalPrices;
+import entities.historicalPrice.HistoryResponse;
 import entities.quotes.Quote;
 import entities.quotes.QuoteResponse;
 import entities.strikes.Strikes;
 import entities.strikes.StrikesResponse;
+import entities.timeSales.DataTime;
+import entities.timeSales.TimeSale;
+import entities.timeSales.TimeSalesResponse;
+import utils.DateCompare;
 import utils.Share;
-
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -52,9 +58,31 @@ public class AssertSteps {
         ExpirationDates expirationDates =((ExpirationDateResponse)Share.getShare("optionsExpirationDateResponds"))
                 .getExpirationsDate();
         for(String expirationDate:expirationDates.getDate()){
-            assertThat(expirationDate.split("-").length,is(3));
+            //assertThat(expirationDate.split("-").length,is(3));
+            assertThat(DateCompare.isAfterOrEqual(expirationDate),is(true));
         }
 
+
+    }
+
+    @Then("the page show prices from pass days")
+    public void thePageShowPricesFromPassDays() {
+        HistoricalPrices historicalPrices =((HistoryResponse)Share.getShare("historicalPriceResponds"))
+                .getHistory();
+        for(HistoricalPrice historicalPrice:historicalPrices.getDay()){
+            assertThat(DateCompare.isBeforeOrEqual(historicalPrice.getDate()),is(true));
+            }
+
+    }
+
+    @Then("the page show prices time and sales from current day")
+    public void thePageShowPricesTimeAndSalesFromCurrentDay() {
+        TimeSale timeSale =((TimeSalesResponse)Share.getShare("timeSalesResponds"))
+                .getSeries();
+        for(DataTime dataTime:timeSale.getData()){
+            System.out.println(dataTime.getTime());
+            //assertThat(DateCompare.isBeforeOrEqual(historicalPrice.getDate()),is(true));
+        }
 
     }
 }

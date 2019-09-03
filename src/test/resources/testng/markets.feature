@@ -20,7 +20,6 @@ Feature: Market data
       |symbol|date|
       |DIS|2019-09-20|
 
-
   Scenario Outline: Get an options strike prices
     When  I request for the options strikes of <symbol> and the <date> as expiration chain
     Then  the page show the options strikes prices for the specific security symbol and expiration date
@@ -29,17 +28,29 @@ Feature: Market data
       |symbol|date|
       |DIS|2019-09-20|
 
-
-  Scenario Outline: Get expiration dates for a particular security.
+  Scenario Outline: Get expiration dates for a particular security
     When  I request for the expiration dates of <symbol>
     Then  the page show expiration dates for the specific security symbol
 
     Examples:
       |symbol|
+      |DIS   |
+
+  Scenario Outline:  Get historical pricing for a security
+    When I request for the historical pricing of <symbol> security
+    Then the page show prices from pass days
+
+    Examples:
+      |symbol|
       |DIS|
 
+  Scenario Outline:  Get time and sales for a security
+    When I request for the time and sales of <symbol> security
+    Then the page show prices time and sales from current day
 
-
+    Examples:
+      |symbol|
+      |DIS|
 
 
 

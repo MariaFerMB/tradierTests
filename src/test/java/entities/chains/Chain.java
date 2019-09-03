@@ -1,11 +1,11 @@
 package entities.chains;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import entities.BaseEntity;
+import entities.BaseQuoteEntity;
 import lombok.Data;
 
 @Data
-public class Chain extends BaseEntity {
+public class Chain extends BaseQuoteEntity {
 
     @JsonProperty("underlying")
     private String underlying;

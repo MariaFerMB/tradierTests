@@ -7,7 +7,7 @@ import utils.Share;
 
 public class UserDataSteps {
 
-    @Given("The user have a access token$")
+    @Given("I have a developer access token$")
     public  void theUserHaveAccessToken(){
         Share.setToken();
     }

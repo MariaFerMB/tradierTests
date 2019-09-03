@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class ChainsResponse {
 
-    @JsonProperty("chains")
+    @JsonProperty("options")
     private Chains chains;
 }

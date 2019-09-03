@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class Chains {
 
-    @JsonProperty("chain")
+    @JsonProperty("option")
     private List<Chain> chain;
 }

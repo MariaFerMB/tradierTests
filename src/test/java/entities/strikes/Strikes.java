@@ -9,5 +9,5 @@ import java.util.List;
 public class Strikes {
 
     @JsonProperty("strike")
-    private List<Float> strike;
+    private List strike;
 }

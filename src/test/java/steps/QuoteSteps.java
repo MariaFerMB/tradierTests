@@ -13,10 +13,10 @@ public class QuoteSteps {
 
 
     @Given("I have a quote of ([^\"]*)$")
-    public  void iHaveAQuoteOfASymbols(String arg){
-        String[] symbols = arg.split(",");
+    public  void iHaveAQuoteOfASymbols(String symbols){
+        String[] symbolsArray = symbols.split(",");
         List<Quote> quotes = new ArrayList<>();
-        for (String symbol: symbols){
+        for (String symbol: symbolsArray){
             Quote quote = QuoteGenerator.generateQuote(symbol);
             quotes.add(quote);
         }
@@ -27,11 +27,6 @@ public class QuoteSteps {
     public void iHaveAOptionChainOfAAPL(String symbol, String expirationData) {
 
         Share.setShare("chain",QuoteGenerator.generateOption(symbol,expirationData));
-
-
-
-
-
 
     }
 }

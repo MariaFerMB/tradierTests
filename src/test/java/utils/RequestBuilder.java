@@ -3,6 +3,7 @@ package utils;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import static io.restassured.RestAssured.given;
 
 
 public class RequestBuilder {
@@ -17,11 +18,21 @@ public class RequestBuilder {
         requestSpecification =requestSpecBuilder.build();
     }
 
-    public RequestSpecification getRequestSpecification() {
-        return requestSpecification;
-    }
-    public void addParam(String param, Object paramValue){
+
+    public RequestBuilder addParam(String param, Object paramValue){
         requestSpecification.queryParam(param,paramValue);
+        return this;
+    }
+
+    private void init(){
+        requestSpecification= given()
+                .header("Authorization", "Bearer "+ Share.token)
+                .spec(requestSpecification);
+    }
+
+    public RequestSpecification getRequestSpecification() {
+        init();
+        return requestSpecification;
     }
 
 

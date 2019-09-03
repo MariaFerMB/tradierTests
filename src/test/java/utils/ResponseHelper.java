@@ -14,19 +14,46 @@ public class ResponseHelper {
 
     private static ObjectMapper mapper  = new ObjectMapper();
 
-    public static Response getResponse(RequestSpecification requestSpecification){
-        Response response;
-        response = given().header("Authorization", "Bearer "+ Share.token)
-                .spec(requestSpecification)
-                .get()
+    public static Response buildGetResponse(RequestSpecification requestSpecification){
+        Response response= requestSpecification
+                .get();
+        response =getResponse(response);
+        return response;
+    }
+
+
+    public static Response buildPostResponse(RequestSpecification requestSpecification){
+        Response response = requestSpecification
+                .post();
+        response =getResponse(response);
+        return response;
+    }
+
+    public static Response buildPutResponse(RequestSpecification requestSpecification){
+        Response response = requestSpecification
+                .put();
+        response =getResponse(response);
+        return response;
+    }
+
+    public static Response buildDeleteResponse(RequestSpecification requestSpecification){
+        Response response = requestSpecification
+                .delete();
+        response =getResponse(response);
+        return response;
+    }
+
+    private static Response getResponse(Response response){
+        return response
                 .then()
                 .assertThat()
                 .statusCode(SC_OK)
                 .extract()
                 .response();
-
-        return response;
     }
+
+
+
 
 
     public static void map(Response response,Class entity, String key) throws IOException {

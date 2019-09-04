@@ -1,7 +1,6 @@
 package steps;
 
 import cucumber.api.java.en.Given;
-import utils.ReadAuthenticationToken;
 import utils.Share;
 
 
@@ -11,9 +10,5 @@ public class UserDataSteps {
     public  void theUserHaveAccessToken(){
         Share.setToken();
     }
-
-
-
-
 
 }

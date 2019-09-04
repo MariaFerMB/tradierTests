@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ReadAuthenticationToken {
+class ReadAuthenticationToken {
 
     private static final String TOKEN_FILE = "src/test/resources/token.properties";
 

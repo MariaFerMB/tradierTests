@@ -38,8 +38,6 @@ public class AssertSteps {
         Chain chain = Share.getShare("optionChain");
         List<Chain> optionsResponds = ((ChainsResponse)Share.getShare("optionChainResponds")).getChains().getChain();
         for (Chain responds :optionsResponds){
-
-            // funcion que compare las 2 cosas
             assertThat(responds.getRootSymbol(),equalTo(chain.getRootSymbol()));
             assertThat(responds.getExpirationDate(),equalTo(chain.getExpirationDate()));
         }
@@ -58,7 +56,6 @@ public class AssertSteps {
         ExpirationDates expirationDates =((ExpirationDateResponse)Share.getShare("optionsExpirationDateResponds"))
                 .getExpirationsDate();
         for(String expirationDate:expirationDates.getDate()){
-            //assertThat(expirationDate.split("-").length,is(3));
             assertThat(DateCompare.isAfterOrEqual(expirationDate),is(true));
         }
 
@@ -75,13 +72,12 @@ public class AssertSteps {
 
     }
 
-    @Then("the page show prices time and sales from current day")
+    @Then("the page show time and sales from current day")
     public void thePageShowPricesTimeAndSalesFromCurrentDay() {
         TimeSale timeSale =((TimeSalesResponse)Share.getShare("timeSalesResponds"))
                 .getSeries();
         for(DataTime dataTime:timeSale.getData()){
-            System.out.println(dataTime.getTime());
-            //assertThat(DateCompare.isBeforeOrEqual(historicalPrice.getDate()),is(true));
+            assertThat(DateCompare.isEqual(dataTime.getTime()),is(true));
         }
 
     }

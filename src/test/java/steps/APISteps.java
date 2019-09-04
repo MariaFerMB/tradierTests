@@ -25,7 +25,6 @@ public class APISteps {
     private static final String MARKETS_OPTIONS_EXPIRATIONS = "markets/options/expirations";
     private static final String MARKETS_HISTORY = "markets/history";
     private static final String MARKETS_MARKETS_TIMESALES = "markets/timesales";
-    private static final String WHACHLIST = "wachlist";
 
     @When("I request for ([^\"]*) symbols$")
     public void theUserRequestForASymbols(String symbols) throws IOException {
@@ -89,6 +88,5 @@ public class APISteps {
 
         Response response = ResponseFactory.getResponse("get", requestSpecification,SC_OK);
         EntityMapper.map(response, TimeSalesResponse.class, "timeSalesResponds");
-
     }
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Share {
 
-    static String token;
+    public static String token;
     private static ThreadLocal<Map<String,Object>> shareMaps = ThreadLocal.withInitial(HashMap::new);
 
 

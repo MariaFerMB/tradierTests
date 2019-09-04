@@ -1,8 +1,10 @@
-package utils;
+package helpers;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import utils.Share;
+
 import static io.restassured.RestAssured.given;
 
 

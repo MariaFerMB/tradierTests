@@ -1,49 +1,41 @@
 package utils;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-
-import java.io.IOException;
-
-import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.SC_OK;
 
-public class ResponseHelper {
+ class ResponseHelper {
 
-    private static ObjectMapper mapper  = new ObjectMapper();
-
-    public static Response buildGetResponse(RequestSpecification requestSpecification){
+    static Response buildGetResponse(RequestSpecification requestSpecification,int statusCode){
         Response response= requestSpecification
                 .get();
-        response =getResponse(response);
+        response =getResponse(response,statusCode);
         return response;
     }
 
 
-    public static Response buildPostResponse(RequestSpecification requestSpecification){
+    static Response buildPostResponse(RequestSpecification requestSpecification,int statusCode){
         Response response = requestSpecification
                 .post();
-        response =getResponse(response);
+        response =getResponse(response,statusCode);
         return response;
     }
 
-    public static Response buildPutResponse(RequestSpecification requestSpecification){
+    static Response buildPutResponse(RequestSpecification requestSpecification,int statusCode){
         Response response = requestSpecification
                 .put();
-        response =getResponse(response);
+        response =getResponse(response,statusCode);
         return response;
     }
 
-    public static Response buildDeleteResponse(RequestSpecification requestSpecification){
+    static Response buildDeleteResponse(RequestSpecification requestSpecification,int statusCode){
         Response response = requestSpecification
                 .delete();
-        response =getResponse(response);
+        response =getResponse(response,statusCode);
         return response;
     }
 
-    private static Response getResponse(Response response){
+    private static Response getResponse(Response response,int statusCode){
         return response
                 .then()
                 .assertThat()
@@ -51,19 +43,4 @@ public class ResponseHelper {
                 .extract()
                 .response();
     }
-
-
-
-
-
-    public static void map(Response response,Class entity, String key) throws IOException {
-        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,true);
-        String x = response.getBody().asString();
-        Share.setShare(key,mapper.readValue(response.getBody().asString(), entity));
-    }
-
-
-
-
-
 }

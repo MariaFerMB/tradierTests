@@ -32,7 +32,7 @@ public class RequestBuilder {
                 .spec(requestSpecification);
     }
 
-    public RequestSpecification getRequestSpecification() {
+    public RequestSpecification buildRequestSpecification() {
         init();
         return requestSpecification;
     }

@@ -1,7 +1,9 @@
 package steps;
 
 import cucumber.api.java.en.When;
+import entities.calendar.CalendarResponse;
 import entities.chains.ChainsResponse;
+import entities.clock.ClockResponse;
 import entities.expirationDate.ExpirationDateResponse;
 import entities.historicalPrice.HistoryResponse;
 import entities.quotes.QuoteResponse;
@@ -19,18 +21,21 @@ import static org.apache.http.HttpStatus.SC_OK;
 
 public class APISteps {
 
-    private static final String MARKETS_QUOTES = "markets/quotes";
-    private static final String MARKETS_OPTIONS_CHAINS = "markets/options/chains";
-    private static final String MARKETS_OPTIONS_STRIKES = "markets/options/strikes";
-    private static final String MARKETS_OPTIONS_EXPIRATIONS = "markets/options/expirations";
-    private static final String MARKETS_HISTORY = "markets/history";
-    private static final String MARKETS_MARKETS_TIME_SALES = "markets/timesales";
+    private static final String MARKETS = "markets/";
+    private static final String MARKETS_QUOTES = MARKETS + "quotes";
+    private static final String MARKETS_OPTIONS_CHAINS = MARKETS + "options/chains";
+    private static final String MARKETS_OPTIONS_STRIKES = MARKETS + "options/strikes";
+    private static final String MARKETS_OPTIONS_EXPIRATIONS = MARKETS +"options/expirations";
+    private static final String MARKETS_HISTORY = MARKETS + "history";
+    private static final String MARKETS_TIME_SALES = MARKETS + "timesales";
+    private static final String MARKETS_CLOCK = MARKETS + "clock";
+    private static final String MARKETS_CALENDAR = MARKETS + "calendar";
 
     @When("I request for ([^\"]*) symbols$")
     public void theUserRequestForASymbols(String symbols) throws IOException {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_QUOTES)
                 .addParam("symbols", symbols)
-                .getRequestSpecification();
+                .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, QuoteResponse.class, "quotesResponds");
@@ -41,7 +46,7 @@ public class APISteps {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_OPTIONS_CHAINS)
                 .addParam("symbol", symbol)
                 .addParam("expiration", date)
-                .getRequestSpecification();
+                .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, ChainsResponse.class, "optionChainResponds");
@@ -53,7 +58,7 @@ public class APISteps {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_OPTIONS_STRIKES)
                 .addParam("symbol", symbol)
                 .addParam("expiration", date)
-                .getRequestSpecification();
+                .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, StrikesResponse.class, "optionsStrikesResponds");
@@ -63,7 +68,7 @@ public class APISteps {
     public void iRequestForTheExpirationDatesOfSymbol(String symbol) throws IOException {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_OPTIONS_EXPIRATIONS)
                 .addParam("symbol", symbol)
-                .getRequestSpecification();
+                .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, ExpirationDateResponse.class, "optionsExpirationDateResponds");
@@ -73,7 +78,7 @@ public class APISteps {
     public void iRequestForTheHistoricalPricingOfSymbolSecurity(String symbol) throws IOException {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_HISTORY)
                 .addParam("symbol", symbol)
-                .getRequestSpecification();
+                .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, HistoryResponse.class, "historicalPriceResponds");
@@ -82,11 +87,29 @@ public class APISteps {
     @When("I request for the time and sales of ([^\"]*) security")
     public void iRequestForTheTimeAndSalesOfSymbolSecurity(String symbol) throws IOException {
 
-        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_MARKETS_TIME_SALES)
+        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_TIME_SALES)
                 .addParam("symbol", symbol)
-                .getRequestSpecification();
+                .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, TimeSalesResponse.class, "timeSalesResponds");
+    }
+
+    @When("I request for the clock")
+    public void iRequestForTheClock() throws IOException {
+        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_CLOCK)
+                .buildRequestSpecification();
+
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
+        EntityMapper.map(response, ClockResponse.class, "clockResponds");
+    }
+
+    @When("I request for the market calendar")
+    public void iRequestForTheMarketCalendar() throws IOException {
+        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_CALENDAR)
+                .buildRequestSpecification();
+
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
+        EntityMapper.map(response, CalendarResponse.class, "calendarResponds");
     }
 }

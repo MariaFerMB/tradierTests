@@ -19,6 +19,12 @@ public class DateCompare {
 
     public static boolean isEqual(String dateParam){
         LocalDate currentDate = LocalDate.now();
+        LocalDate date = LocalDate.parse(dateParam);
+        return currentDate.isEqual(date);
+    }
+
+    public static boolean isEqualForDateTime(String dateParam){
+        LocalDate currentDate = LocalDate.now();
         LocalDateTime date = LocalDateTime.parse(dateParam);
         return currentDate.isEqual(date.toLocalDate());
     }

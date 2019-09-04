@@ -23,12 +23,19 @@ Feature: Market data
 
   Scenario:  Get historical pricing for a security
     When I request for the historical pricing of DIS security
-    Then the page show prices from pass days
+    Then the page show prices from past days
 
   Scenario:  Get time and sales for a security
     When I request for the time and sales of DIS security
     Then the page show time and sales from current day
 
+  Scenario:  Get the intraday status
+    When I request for the clock
+    Then the page show information about current date market status
+
+  Scenario:  Get the market calendar
+    When I request for the market calendar
+    Then the page show market calendar about current month and year
 
 
 

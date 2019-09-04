@@ -14,20 +14,20 @@ public class QuoteSteps {
 
 
     @Given("I have a quote of ([^\"]*) securities$")
-    public  void iHaveAQuoteOfASymbols(String symbols){
+    public void iHaveAQuoteOfASymbols(String symbols) {
         String[] symbolsArray = symbols.split(",");
         List<Quote> quotes = new ArrayList<>();
-        for (String symbol: symbolsArray){
+        for (String symbol : symbolsArray) {
             Quote quote = EntityGenerator.generateQuote(symbol);
             quotes.add(quote);
         }
-        Share.setShare("quotes",quotes);
+        Share.setShare("quotes", quotes);
     }
 
 
     @And("I have a option chain of ([^\"]*) with expiration date: ([^\"]*)")
-    public void iHaveAOptionChainOfSymbolWithExpirationDateDate(String symbol,String date) {
+    public void iHaveAOptionChainOfSymbolWithExpirationDateDate(String symbol, String date) {
         Chain chain = EntityGenerator.generateChainOption(symbol, date);
-        Share.setShare("optionChain",chain);
+        Share.setShare("optionChain", chain);
     }
 }

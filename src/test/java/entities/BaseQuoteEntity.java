@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class BaseQuoteEntity extends  BaseEntity{
+public class BaseQuoteEntity extends BaseEntity {
 
     @JsonProperty("symbol")
     protected String symbol;
@@ -23,7 +23,7 @@ public class BaseQuoteEntity extends  BaseEntity{
     @JsonProperty("ask")
     protected double ask;
     @JsonProperty("change_percentage")
-    protected double  changePercentage;
+    protected double changePercentage;
     @JsonProperty("average_volume")
     protected long averageVolume;
     @JsonProperty("last_volume")
@@ -41,7 +41,7 @@ public class BaseQuoteEntity extends  BaseEntity{
     @JsonProperty("bidexch")
     protected String bidExch;
     @JsonProperty("bid_date")
-    protected long  bidDate;
+    protected long bidDate;
     @JsonProperty("asksize")
     protected int askSize;
     @JsonProperty("askexch")

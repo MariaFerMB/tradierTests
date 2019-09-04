@@ -17,18 +17,18 @@ public class RequestBuilder {
                 .setBaseUri("https://sandbox.tradier.com/v1")
                 .setAccept(ContentType.JSON)
                 .setBasePath(basPath);
-        requestSpecification =requestSpecBuilder.build();
+        requestSpecification = requestSpecBuilder.build();
     }
 
 
-    public RequestBuilder addParam(String param, Object paramValue){
-        requestSpecification.queryParam(param,paramValue);
+    public RequestBuilder addParam(String param, Object paramValue) {
+        requestSpecification.queryParam(param, paramValue);
         return this;
     }
 
-    private void init(){
-        requestSpecification= given()
-                .header("Authorization", "Bearer "+ Share.token)
+    private void init() {
+        requestSpecification = given()
+                .header("Authorization", "Bearer " + Share.token)
                 .spec(requestSpecification);
     }
 
@@ -36,10 +36,6 @@ public class RequestBuilder {
         init();
         return requestSpecification;
     }
-
-
-
-
 
 
 }

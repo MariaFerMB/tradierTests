@@ -3,38 +3,38 @@ package utils;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
- class ResponseHelper {
+class ResponseHelper {
 
-    static Response buildGetResponse(RequestSpecification requestSpecification,int statusCode){
+    static Response buildGetResponse(RequestSpecification requestSpecification, int statusCode) {
         Response response = requestSpecification
                 .get();
-        response = getResponse(response,statusCode);
+        response = getResponse(response, statusCode);
         return response;
     }
 
 
-    static Response buildPostResponse(RequestSpecification requestSpecification,int statusCode){
+    static Response buildPostResponse(RequestSpecification requestSpecification, int statusCode) {
         Response response = requestSpecification
                 .post();
-        response = getResponse(response,statusCode);
+        response = getResponse(response, statusCode);
         return response;
     }
 
-    static Response buildPutResponse(RequestSpecification requestSpecification,int statusCode){
+    static Response buildPutResponse(RequestSpecification requestSpecification, int statusCode) {
         Response response = requestSpecification
                 .put();
-        response = getResponse(response,statusCode);
+        response = getResponse(response, statusCode);
         return response;
     }
 
-    static Response buildDeleteResponse(RequestSpecification requestSpecification,int statusCode){
+    static Response buildDeleteResponse(RequestSpecification requestSpecification, int statusCode) {
         Response response = requestSpecification
                 .delete();
-        response = getResponse(response,statusCode);
+        response = getResponse(response, statusCode);
         return response;
     }
 
-    private static Response getResponse(Response response,int statusCode){
+    private static Response getResponse(Response response, int statusCode) {
         return response
                 .then()
                 .assertThat()

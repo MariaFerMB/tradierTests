@@ -10,7 +10,4 @@ public class Quote extends BaseQuoteEntity {
 
     @JsonProperty("root_symbols")
     protected String rootSymbols;
-
-
-
 }

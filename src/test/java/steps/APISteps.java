@@ -24,7 +24,7 @@ public class APISteps {
     private static final String MARKETS_OPTIONS_STRIKES = "markets/options/strikes";
     private static final String MARKETS_OPTIONS_EXPIRATIONS = "markets/options/expirations";
     private static final String MARKETS_HISTORY = "markets/history";
-    private static final String MARKETS_MARKETS_TIMESALES = "markets/timesales";
+    private static final String MARKETS_MARKETS_TIME_SALES = "markets/timesales";
 
     @When("I request for ([^\"]*) symbols$")
     public void theUserRequestForASymbols(String symbols) throws IOException {
@@ -32,7 +32,7 @@ public class APISteps {
                 .addParam("symbols", symbols)
                 .getRequestSpecification();
 
-        Response response = ResponseFactory.getResponse("get", requestSpecification,SC_OK);
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, QuoteResponse.class, "quotesResponds");
     }
 
@@ -43,7 +43,7 @@ public class APISteps {
                 .addParam("expiration", date)
                 .getRequestSpecification();
 
-        Response response = ResponseFactory.getResponse("get", requestSpecification,SC_OK);
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, ChainsResponse.class, "optionChainResponds");
     }
 
@@ -55,7 +55,7 @@ public class APISteps {
                 .addParam("expiration", date)
                 .getRequestSpecification();
 
-        Response response = ResponseFactory.getResponse("get", requestSpecification,SC_OK);
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, StrikesResponse.class, "optionsStrikesResponds");
     }
 
@@ -65,7 +65,7 @@ public class APISteps {
                 .addParam("symbol", symbol)
                 .getRequestSpecification();
 
-        Response response = ResponseFactory.getResponse("get", requestSpecification,SC_OK);
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, ExpirationDateResponse.class, "optionsExpirationDateResponds");
     }
 
@@ -75,18 +75,18 @@ public class APISteps {
                 .addParam("symbol", symbol)
                 .getRequestSpecification();
 
-        Response response = ResponseFactory.getResponse("get", requestSpecification,SC_OK);
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, HistoryResponse.class, "historicalPriceResponds");
     }
 
     @When("I request for the time and sales of ([^\"]*) security")
     public void iRequestForTheTimeAndSalesOfSymbolSecurity(String symbol) throws IOException {
 
-        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_MARKETS_TIMESALES)
+        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_MARKETS_TIME_SALES)
                 .addParam("symbol", symbol)
                 .getRequestSpecification();
 
-        Response response = ResponseFactory.getResponse("get", requestSpecification,SC_OK);
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, TimeSalesResponse.class, "timeSalesResponds");
     }
 }

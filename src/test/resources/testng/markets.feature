@@ -37,6 +37,16 @@ Feature: Market data
     When I request for the market calendar
     Then the page show market calendar about current month and year
 
+  Scenario:  Search securities using the description
+    When I request for the securities using the key word: alphabet for the description
+    Then the page show securities that have the key word: alphabet in the description
+
+  Scenario:  Search securities using the symbol
+    When I request for the securities using the key word: goog for the symbol
+    Then the page show securities that have the key word: goog in the symbol
+
+
+
 
 
 

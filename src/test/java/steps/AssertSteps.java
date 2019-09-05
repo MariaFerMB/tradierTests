@@ -14,6 +14,9 @@ import entities.historicalPrice.HistoricalPrices;
 import entities.historicalPrice.HistoryResponse;
 import entities.quotes.Quote;
 import entities.quotes.QuoteResponse;
+import entities.security.Securities;
+import entities.security.Security;
+import entities.security.SecurityResponse;
 import entities.strikes.Strikes;
 import entities.strikes.StrikesResponse;
 import entities.timeSales.DataTime;
@@ -99,5 +102,25 @@ public class AssertSteps {
         MonthStatusMarket market = ((CalendarResponse) Share.getShare("calendarResponds")).getCalendar();
         assertThat(market.getYear(),is(currentDate.getYear()));
         assertThat(market.getMonth(),is(currentDate.getMonthValue()));
+    }
+
+    @Then("the page show securities that have the key word: ([^\"]*) in the description")
+    public void thePageShowSecuritiesThatHaveTheKeyWordInTheDescription(String keyWord) {
+        List<Security> securities = ((SecurityResponse) Share.getShare("securityDescriptionResponds"))
+                .getSecurities()
+                .getSecurity();
+        for (Security security : securities) {
+            assertThat(security.getDescription(), containsStringIgnoringCase(keyWord));
+        }
+    }
+
+    @Then("the page show securities that have the key word: ([^\"]*) in the symbol")
+    public void thePageShowSecuritiesThatHaveTheKeyWordAlphabetInTheSymbol(String keyWord) {
+        List<Security> securities = ((SecurityResponse) Share.getShare("securitySymbolResponds"))
+                .getSecurities()
+                .getSecurity();
+        for (Security security : securities) {
+            assertThat(security.getSymbol(), containsStringIgnoringCase(keyWord));
+        }
     }
 }

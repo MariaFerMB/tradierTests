@@ -97,6 +97,18 @@ public class APISteps {
         EntityMapper.map(response, HistoryResponse.class, "historicalPriceResponds");
     }
 
+    @When("I request for the historical pricing with ([^\"]*) as start date and ([^\"]*) as end date of ([^\"]*) security")
+    public void requestForTheHistoricalPricingWithStartAndAsEndDateOfSecurity(String startDate,String endDate,String symbol) {
+        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_HISTORY)
+                .addParam("symbol", symbol)
+                .addParam("start",startDate)
+                .addParam("end",endDate)
+                .buildRequestSpecification();
+
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
+        EntityMapper.map(response, HistoryResponse.class, "intervalHistoricalPriceResponds");
+    }
+
     @When("I request for the time and sales of ([^\"]*) security")
     public void iRequestForTheTimeAndSalesOfSymbolSecurity(String symbol) {
 
@@ -126,6 +138,17 @@ public class APISteps {
         EntityMapper.map(response, CalendarResponse.class, "calendarResponds");
     }
 
+    @When("I request for the market calendar with {int} as month and {int} as year")
+    public void iRequestForTheMarketCalendarWithAsMonthAndAsYear(int month, int year) {
+        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_CALENDAR)
+                .addParam("month",month)
+                .addParam("year",year)
+                .buildRequestSpecification();
+
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
+        EntityMapper.map(response, CalendarResponse.class, "specificCalendarResponds");
+    }
+
     @When("I request for the securities using the key word: ([^\"]*) for the description")
     public void iRequestForTheSecuritiesUsingTheKeyWord(String keyWord) {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_SEARCH)
@@ -145,6 +168,7 @@ public class APISteps {
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, SecurityResponse.class, "securitySymbolResponds");
     }
+
 
 
 }

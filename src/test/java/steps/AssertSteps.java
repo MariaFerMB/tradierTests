@@ -1,6 +1,7 @@
 package steps;
 
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import entities.calendar.CalendarResponse;
 import entities.calendar.MonthStatusMarket;
 import entities.chains.Chain;
@@ -83,6 +84,15 @@ public class AssertSteps {
             assertThat(DateCompare.isBeforeOrEqual(historicalPrice.getDate()), is(true));
         }
     }
+    @Then("the page show prices between ([^\"]*) and ([^\"]*) dates")
+    public void thePageShowPricesBetweenAndDates(String startDate,String endDate) {
+        HistoricalPrices historicalPrices = ((HistoryResponse) Share.getShare("intervalHistoricalPriceResponds"))
+                .getHistory();
+        for (HistoricalPrice historicalPrice : historicalPrices.getDay()) {
+            assertThat(DateCompare.isBetweenOf(startDate,endDate,historicalPrice.getDate()), is(true));
+        }
+
+    }
 
     @Then("the page show time and sales from current day")
     public void thePageShowPricesTimeAndSalesFromCurrentDay() {
@@ -109,6 +119,13 @@ public class AssertSteps {
         assertThat(market.getMonth(), is(currentDate.getMonthValue()));
     }
 
+    @Then("the page show market calendar about month {int} and year {int}")
+    public void thePageShowMarketCalendarAboutMonthAndYear(int month, int year) {
+        MonthStatusMarket market = ((CalendarResponse) Share.getShare("specificCalendarResponds")).getCalendar();
+        assertThat(market.getYear(), is(year));
+        assertThat(market.getMonth(), is(month));
+    }
+
     @Then("the page show securities that have the key word: ([^\"]*) in the description")
     public void thePageShowSecuritiesThatHaveTheKeyWordInTheDescription(String keyWord) {
         List<Security> securities = ((SecurityResponse) Share.getShare("securityDescriptionResponds"))
@@ -128,4 +145,7 @@ public class AssertSteps {
             assertThat(security.getSymbol(), containsStringIgnoringCase(keyWord));
         }
     }
+
+
+
 }

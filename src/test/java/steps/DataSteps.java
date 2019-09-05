@@ -10,7 +10,7 @@ import utils.Share;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuoteSteps {
+public class DataSteps {
 
 
     @Given("I have a quote of ([^\"]*) securities$")

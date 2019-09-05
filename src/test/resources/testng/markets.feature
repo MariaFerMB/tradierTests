@@ -3,7 +3,7 @@ Feature: Market data
   Background:
     Given I have a developer access token
 
-  Scenario: Get quotes
+  Scenario: Get quotes with symbols parameter
     And I have a quote of AAPL,DIS securities
     When  I request for the quotes that have AAPL,DIS symbols
     Then  the page show the quotes for the securities that I asked
@@ -29,6 +29,10 @@ Feature: Market data
     When I request for the historical pricing of DIS security
     Then the page show prices from past days
 
+  Scenario:  Get historical price between two dates
+    When I request for the historical pricing with 2019-08-28 as start date and 2019-09-03 as end date of DIS security
+    Then the page show prices between 2019-08-28 and 2019-09-03 dates
+
   Scenario:  Get time and sales for a security
     When I request for the time and sales of DIS security
     Then the page show time and sales from current day
@@ -40,6 +44,10 @@ Feature: Market data
   Scenario:  Get the market calendar
     When I request for the market calendar
     Then the page show market calendar about current month and year
+
+  Scenario:  Get the market calendar using a specific date and year
+    When I request for the market calendar with 3 as month and 2019 as year
+    Then the page show market calendar about month 3 and year 2019
 
   Scenario:  Search securities using the description
     When I request for the securities using the key word: alphabet for the description

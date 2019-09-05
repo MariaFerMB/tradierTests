@@ -28,4 +28,11 @@ public class DateCompare {
         LocalDateTime date = LocalDateTime.parse(dateParam);
         return currentDate.isEqual(date.toLocalDate());
     }
+
+    public static boolean isBetweenOf(String start,String end,String dateParam) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        LocalDate date = LocalDate.parse(dateParam);
+        return (date.isBefore(endDate) || endDate.isEqual(date))&&(date.isAfter(startDate) || startDate.isEqual(date));
+    }
 }

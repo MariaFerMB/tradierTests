@@ -98,11 +98,11 @@ public class APISteps {
     }
 
     @When("I request for the historical pricing with ([^\"]*) as start date and ([^\"]*) as end date of ([^\"]*) security")
-    public void requestForTheHistoricalPricingWithStartAndAsEndDateOfSecurity(String startDate,String endDate,String symbol) {
+    public void requestForTheHistoricalPricingWithStartAndAsEndDateOfSecurity(String startDate, String endDate, String symbol) {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_HISTORY)
                 .addParam("symbol", symbol)
-                .addParam("start",startDate)
-                .addParam("end",endDate)
+                .addParam("start", startDate)
+                .addParam("end", endDate)
                 .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
@@ -141,8 +141,8 @@ public class APISteps {
     @When("I request for the market calendar with {int} as month and {int} as year")
     public void iRequestForTheMarketCalendarWithAsMonthAndAsYear(int month, int year) {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_CALENDAR)
-                .addParam("month",month)
-                .addParam("year",year)
+                .addParam("month", month)
+                .addParam("year", year)
                 .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
@@ -168,7 +168,6 @@ public class APISteps {
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, SecurityResponse.class, "securitySymbolResponds");
     }
-
 
 
 }

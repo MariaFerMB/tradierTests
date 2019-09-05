@@ -1,7 +1,6 @@
 package steps;
 
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import entities.calendar.CalendarResponse;
 import entities.calendar.MonthStatusMarket;
 import entities.chains.Chain;
@@ -84,12 +83,13 @@ public class AssertSteps {
             assertThat(DateCompare.isBeforeOrEqual(historicalPrice.getDate()), is(true));
         }
     }
+
     @Then("the page show prices between ([^\"]*) and ([^\"]*) dates")
-    public void thePageShowPricesBetweenAndDates(String startDate,String endDate) {
+    public void thePageShowPricesBetweenAndDates(String startDate, String endDate) {
         HistoricalPrices historicalPrices = ((HistoryResponse) Share.getShare("intervalHistoricalPriceResponds"))
                 .getHistory();
         for (HistoricalPrice historicalPrice : historicalPrices.getDay()) {
-            assertThat(DateCompare.isBetweenOf(startDate,endDate,historicalPrice.getDate()), is(true));
+            assertThat(DateCompare.isBetweenOf(startDate, endDate, historicalPrice.getDate()), is(true));
         }
 
     }
@@ -145,7 +145,6 @@ public class AssertSteps {
             assertThat(security.getSymbol(), containsStringIgnoringCase(keyWord));
         }
     }
-
 
 
 }

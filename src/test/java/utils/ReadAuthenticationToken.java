@@ -17,6 +17,7 @@ class ReadAuthenticationToken {
             Properties prop = new Properties();
             prop.load(fileInput);
             respond = prop.getProperty("token");
+            fileInput.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

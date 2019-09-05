@@ -12,12 +12,12 @@ Feature: Market data
     When  I request for quotes without symbols parameter
     Then  the page show the message: Invalid Parameter: symbols
 
-  Scenario: Get an option chain
+  Scenario: Get a security option chain
     And   I have a option chain of DIS symbol security with expiration date: 2019-09-20
     When  I request for the option chain of DIS and the 2019-09-20 as expiration date
     Then  the page show the different options chain for the specific security symbol and expiration date
 
-  Scenario: Get an options strike prices
+  Scenario: Get a security options strike prices
     When  I request for the options strikes of DIS and the 2019-09-20 as expiration chain
     Then  the page show the options strikes prices for the specific security symbol and expiration date
 
@@ -29,7 +29,7 @@ Feature: Market data
     When I request for the historical pricing of DIS security
     Then the page show prices from past days
 
-  Scenario:  Get historical price between two dates
+  Scenario:  Get a security historical price between two dates
     When I request for the historical pricing with 2019-08-28 as start date and 2019-09-03 as end date of DIS security
     Then the page show prices between 2019-08-28 and 2019-09-03 dates
 

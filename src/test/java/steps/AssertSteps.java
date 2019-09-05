@@ -128,6 +128,4 @@ public class AssertSteps {
             assertThat(security.getSymbol(), containsStringIgnoringCase(keyWord));
         }
     }
-
-
 }

@@ -25,7 +25,7 @@ public class QuoteSteps {
     }
 
 
-    @And("I have a option chain of ([^\"]*) with expiration date: ([^\"]*)")
+    @And("I have a option chain of ([^\"]*) symbol security with expiration date: ([^\"]*)")
     public void iHaveAOptionChainOfSymbolWithExpirationDateDate(String symbol, String date) {
         Chain chain = EntityGenerator.generateChainOption(symbol, date);
         Share.setShare("optionChain", chain);

@@ -15,7 +15,9 @@ import io.restassured.specification.RequestSpecification;
 import utils.EntityMapper;
 import helpers.RequestBuilder;
 import utils.ResponseFactory;
+import utils.Share;
 
+import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
 import static org.apache.http.HttpStatus.SC_OK;
 
 public class APISteps {
@@ -24,15 +26,15 @@ public class APISteps {
     private static final String MARKETS_QUOTES = MARKETS + "quotes";
     private static final String MARKETS_OPTIONS_CHAINS = MARKETS + "options/chains";
     private static final String MARKETS_OPTIONS_STRIKES = MARKETS + "options/strikes";
-    private static final String MARKETS_OPTIONS_EXPIRATIONS = MARKETS +"options/expirations";
+    private static final String MARKETS_OPTIONS_EXPIRATIONS = MARKETS + "options/expirations";
     private static final String MARKETS_HISTORY = MARKETS + "history";
     private static final String MARKETS_TIME_SALES = MARKETS + "timesales";
     private static final String MARKETS_CLOCK = MARKETS + "clock";
     private static final String MARKETS_CALENDAR = MARKETS + "calendar";
-    private static final String MARKETS_SEARCH = MARKETS +"search";
-    private static final String MARKETS_LOOKUP = MARKETS +"lookup";
+    private static final String MARKETS_SEARCH = MARKETS + "search";
+    private static final String MARKETS_LOOKUP = MARKETS + "lookup";
 
-    @When("I request for ([^\"]*) symbols$")
+    @When("I request for the quotes that have ([^\"]*) symbols$")
     public void theUserRequestForASymbols(String symbols) {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_QUOTES)
                 .addParam("symbols", symbols)
@@ -40,6 +42,16 @@ public class APISteps {
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, QuoteResponse.class, "quotesResponds");
+    }
+
+    @When("I request for quotes without symbols parameter")
+    public void iRequestForQuotesWithoutSymbolsParameter() {
+        RequestSpecification requestSpecification = new RequestBuilder(MARKETS_QUOTES)
+                .buildRequestSpecification();
+
+        Response response = ResponseFactory.getResponse("get", requestSpecification, SC_BAD_REQUEST);
+        Share.setShare("invalidQuotesResponse", response.getBody().asString());
+
     }
 
     @When("I request for the option chain of ([^\"]*) and the ([^\"]*) as expiration date")
@@ -66,7 +78,7 @@ public class APISteps {
     }
 
     @When("I request for the expiration dates of ([^\"]*)")
-    public void iRequestForTheExpirationDatesOfSymbol(String symbol)  {
+    public void iRequestForTheExpirationDatesOfSymbol(String symbol) {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_OPTIONS_EXPIRATIONS)
                 .addParam("symbol", symbol)
                 .buildRequestSpecification();
@@ -86,7 +98,7 @@ public class APISteps {
     }
 
     @When("I request for the time and sales of ([^\"]*) security")
-    public void iRequestForTheTimeAndSalesOfSymbolSecurity(String symbol)  {
+    public void iRequestForTheTimeAndSalesOfSymbolSecurity(String symbol) {
 
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_TIME_SALES)
                 .addParam("symbol", symbol)
@@ -106,7 +118,7 @@ public class APISteps {
     }
 
     @When("I request for the market calendar")
-    public void iRequestForTheMarketCalendar(){
+    public void iRequestForTheMarketCalendar() {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_CALENDAR)
                 .buildRequestSpecification();
 
@@ -115,9 +127,9 @@ public class APISteps {
     }
 
     @When("I request for the securities using the key word: ([^\"]*) for the description")
-    public void iRequestForTheSecuritiesUsingTheKeyWord(String keyWord){
+    public void iRequestForTheSecuritiesUsingTheKeyWord(String keyWord) {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_SEARCH)
-                .addParam("q",keyWord)
+                .addParam("q", keyWord)
                 .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
@@ -127,10 +139,12 @@ public class APISteps {
     @When("I request for the securities using the key word: ([^\"]*) for the symbol")
     public void iRequestForTheSecuritiesUsingTheKeyWordAlphabetForTheSymbol(String keyWord) {
         RequestSpecification requestSpecification = new RequestBuilder(MARKETS_LOOKUP)
-                .addParam("q",keyWord)
+                .addParam("q", keyWord)
                 .buildRequestSpecification();
 
         Response response = ResponseFactory.getResponse("get", requestSpecification, SC_OK);
         EntityMapper.map(response, SecurityResponse.class, "securitySymbolResponds");
     }
+
+
 }

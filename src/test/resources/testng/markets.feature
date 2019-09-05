@@ -5,11 +5,15 @@ Feature: Market data
 
   Scenario: Get quotes
     And I have a quote of AAPL,DIS securities
-    When  I request for AAPL,DIS symbols
+    When  I request for the quotes that have AAPL,DIS symbols
     Then  the page show the quotes for the securities that I asked
 
+  Scenario: Try get quotes without symbols parameter
+    When  I request for quotes without symbols parameter
+    Then  the page show the message: Invalid Parameter: symbols
+
   Scenario: Get an option chain
-    And   I have a option chain of DIS with expiration date: 2019-09-20
+    And   I have a option chain of DIS symbol security with expiration date: 2019-09-20
     When  I request for the option chain of DIS and the 2019-09-20 as expiration date
     Then  the page show the different options chain for the specific security symbol and expiration date
 

@@ -10,6 +10,4 @@ public class HistoricalPrices {
 
     @JsonProperty("day")
     private List<HistoricalPrice> day;
-
-
 }

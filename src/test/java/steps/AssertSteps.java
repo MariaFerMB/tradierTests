@@ -14,7 +14,6 @@ import entities.historicalPrice.HistoricalPrices;
 import entities.historicalPrice.HistoryResponse;
 import entities.quotes.Quote;
 import entities.quotes.QuoteResponse;
-import entities.security.Securities;
 import entities.security.Security;
 import entities.security.SecurityResponse;
 import entities.strikes.Strikes;
@@ -39,6 +38,12 @@ public class AssertSteps {
 
         for (int i = 0; i < quotes.size(); i++)
             assertThat(quotes.get(i).getSymbol(), equalTo(quoteResponds.get(i).getSymbol()));
+    }
+
+    @Then("the page show the message: ([^\"]*)")
+    public void thePageShowTheMessageInvalidParameterSymbol(String errorMessage) {
+        String errorMessageResponse = Share.getShare("invalidQuotesResponse");
+        assertThat(errorMessageResponse, equalTo(errorMessage));
     }
 
     @Then("the page show the different options chain for the specific security symbol and expiration date")
@@ -92,7 +97,7 @@ public class AssertSteps {
     public void thePageShowInformationAboutCurrentDateMarketStatus() {
 
         Clock clock = ((ClockResponse) Share.getShare("clockResponds")).getClock();
-        assertThat(DateCompare.isEqual(clock.getDate()),is(true));
+        assertThat(DateCompare.isEqual(clock.getDate()), is(true));
     }
 
     @Then("the page show market calendar about current month and year")
@@ -100,8 +105,8 @@ public class AssertSteps {
         LocalDate currentDate = LocalDate.now();
 
         MonthStatusMarket market = ((CalendarResponse) Share.getShare("calendarResponds")).getCalendar();
-        assertThat(market.getYear(),is(currentDate.getYear()));
-        assertThat(market.getMonth(),is(currentDate.getMonthValue()));
+        assertThat(market.getYear(), is(currentDate.getYear()));
+        assertThat(market.getMonth(), is(currentDate.getMonthValue()));
     }
 
     @Then("the page show securities that have the key word: ([^\"]*) in the description")
@@ -123,4 +128,6 @@ public class AssertSteps {
             assertThat(security.getSymbol(), containsStringIgnoringCase(keyWord));
         }
     }
+
+
 }

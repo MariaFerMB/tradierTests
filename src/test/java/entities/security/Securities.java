@@ -10,6 +10,4 @@ public class Securities {
 
     @JsonProperty("security")
     private List<Security> security;
-
-
 }

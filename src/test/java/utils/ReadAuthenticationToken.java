@@ -9,8 +9,8 @@ class ReadAuthenticationToken {
 
     private static final String TOKEN_FILE = "src/test/resources/token.properties";
 
-    static String readToken(){
-        String respond ="";
+    static String readToken() {
+        String respond = "";
 
         try {
             InputStream fileInput = new FileInputStream(TOKEN_FILE);
@@ -23,11 +23,6 @@ class ReadAuthenticationToken {
         return respond;
 
     }
-
-
-
-
-
 
 
 }

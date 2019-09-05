@@ -49,9 +49,11 @@ Feature: Market data
     When I request for the market calendar with 3 as month and 2019 as year
     Then the page show market calendar about month 3 and year 2019
 
+  @SearchSecurities
   Scenario:  Search securities using the description
     When I request for the securities using the key word: alphabet for the description
     Then the page show securities that have the key word: alphabet in the description
+
 
   Scenario:  Search securities using the symbol
     When I request for the securities using the key word: goog for the symbol
